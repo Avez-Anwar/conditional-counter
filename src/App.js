@@ -1,59 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
-class App extends React.Component {
-  state = {
-    count: 0
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  const handleIncrement = () => {
+    setCounter(counter - 1);
   };
 
-  handleIncrement = () => {
-    this.setState((prevState) => {
-      return {
-        count: prevState.count + 1
-      };
-    });
+  const handleDecrement = () => {
+    setCounter(counter + 1);
   };
 
-  handleDecrement = () => {
-    this.setState((prevState) => {
-      return {
-        count: prevState.count - 1
-      };
-    });
-  };
-
-  render() {
-    if (this.state.count > 5) {
-      return (
-        <div style={{ color: "green" }}>
-          {" "}
-          <div className="App">
-            <button onClick={this.handleDecrement}>-</button>
-            {this.state.count}
-            <button onClick={this.handleIncrement}>+</button>
-          </div>
-        </div>
-      );
-    } else if (this.state.count < 0) {
-      return (
-        <div style={{ color: "red" }}>
-          {" "}
-          <div className="App">
-            <button onClick={this.handleDecrement}>-</button>
-            {this.state.count}
-            <button onClick={this.handleIncrement}>+</button>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <button onClick={this.handleDecrement}>-</button>
-          {this.state.count}
-          <button onClick={this.handleIncrement}>+</button>
-        </div>
-      );
-    }
+  if (counter < 0) {
+    return (
+      <div style={{ color: "red" }} className="App">
+        <button onClick={handleIncrement}>-</button>
+        {counter}
+        <button onClick={handleDecrement}>+</button>
+      </div>
+    );
+  } else if (counter > 5 && counter < 10) {
+    return (
+      <div style={{ color: "violet" }} className="App">
+        <button onClick={handleIncrement}>-</button>
+        {counter}
+        <button onClick={handleDecrement}>+</button>
+      </div>
+    );
+  } else if (counter >= 10) {
+    return (
+      <div style={{ color: "skyblue" }} className="App">
+        <button onClick={handleIncrement}>-</button>
+        {counter}
+        <button onClick={handleDecrement}>+</button>
+      </div>
+    );
+  } else {
+    return (
+      <div style={{ color: "green" }} className="App">
+        <button onClick={handleIncrement}>-</button>
+        {counter}
+        <button onClick={handleDecrement}>+</button>
+      </div>
+    );
   }
 }
 
